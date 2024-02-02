@@ -1,5 +1,13 @@
+import { useState } from "react";
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+
 function Coming() {
     const  year = new Date().getFullYear();
+    const [open, setOpen] = useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
   return (
     <section id="coming" className="flex flex-col items-center justify-between px-20 py-10">
         <header className="flex items-center justify-between w-full text-blue-400">
@@ -17,7 +25,15 @@ function Coming() {
             <h1 className="text-5xl font-bold uppercase">Coming soon</h1>
             <p className="text-xl">We are currently working on this website.</p>
             <p className="text-xl">It will be here soon, click &quot;Notify me&quot; button to be ready for the grand day!</p>
-            <button className="px-6 py-2 text-xl font-bold transition ease-in-out bg-blue-500 rounded-md hover:bg-blue-600 ">Notify me</button>
+            <button onClick={onOpenModal} className="px-6 py-2 font-bold transition ease-in-out bg-blue-500 rounded-md hover:bg-blue-600 ">Notify me</button>
+            <Modal open={open} onClose={onCloseModal} center>
+                <form className="flex flex-col items-start gap-2 ">
+                    <p>Enter your email:</p>
+                    <input type="email" className="h-8 px-3 rounded outline-none w-96"/>
+                    <button type="submit" className="px-4 py-1 text-white transition ease-in-out bg-blue-900 rounded-md hover:bg-blue-950">Confirm</button>
+                </form>
+            </Modal>
+            
         </div>
         <footer className="flex flex-col items-center text-xl text-white">
             <p>{year} &copy; <a href="#" className="font-bold">Trave designs</a>. All rights reserved.</p>

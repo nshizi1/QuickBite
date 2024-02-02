@@ -12,9 +12,13 @@
 #coming{
     background-image: url(./assets/images/wallpaper.jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
     background-attachment: fixed;
+    background-size: cover;
     width: 100%;
     height: 100vh;
     overflow: hidden;
+}
+.react-responsive-modal-modal{
+    background-color: rgb(92, 169, 227);
+    border-radius: 5px;
 }
