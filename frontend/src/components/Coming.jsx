@@ -23,6 +23,7 @@ function Coming() {
             toast.error('Please enter your email');
         }else{
             toast.success("Email sent successfully");
+            setEmail("");
             setLoading(false)
             // setLoading(true)
             // emailjs.sendForm('service_p43m6qi', 'template_r7qrk2e', form.current, 'IOhB6Nxg-_2KrNZWL')
