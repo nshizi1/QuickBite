@@ -29,7 +29,7 @@ function Coming() {
             <Modal open={open} onClose={onCloseModal} center>
                 <form className="flex flex-col items-start gap-2 ">
                     <p>Enter your email:</p>
-                    <input type="email" className="h-8 px-3 rounded outline-none w-96"/>
+                    <input type="email" className="h-8 px-3 rounded outline-none w-96 max-sm:w-60"/>
                     <button type="submit" className="px-4 py-1 text-white transition ease-in-out bg-blue-900 rounded-md hover:bg-blue-950">Confirm</button>
                 </form>
             </Modal>
