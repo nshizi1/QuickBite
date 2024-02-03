@@ -3,6 +3,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+    font-family: logoFont;
+    src: url(./assets/fonts/logoFont.otf);
+}
 *{
     margin: 0;
     padding: 0;
@@ -21,4 +25,7 @@
 .react-responsive-modal-modal{
     background-color: rgb(92, 169, 227);
     border-radius: 5px;
+}
+.logo{
+    font-family: logoFont;
 }

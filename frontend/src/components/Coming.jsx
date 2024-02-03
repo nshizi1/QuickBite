@@ -44,7 +44,7 @@ function Coming() {
     <section id="coming" className="flex flex-col items-center justify-between px-20 py-10">
         <header className="flex items-center justify-between w-full text-blue-400">
             <div className="logo">
-                <h3 className="text-4xl font-bold ">Fudie</h3>
+                <h3 className="text-4xl  logo ">Quick Bite</h3>
             </div>
             <div className="links">
                 <ul className="flex gap-1">
