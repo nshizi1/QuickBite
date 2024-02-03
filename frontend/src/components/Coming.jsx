@@ -3,6 +3,8 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import whiteThree from '../assets/images/brand/white/three.png';
+import emailjs from '@emailjs/browser';
 
 function Coming() {
     const  year = new Date().getFullYear();
@@ -12,39 +14,41 @@ function Coming() {
     const onCloseModal = () => setOpen(false);
 
     const [email, setEmail] = useState('');
+
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     }
     const form = useRef();
+
     const [loading, setLoading] = useState(false);
+    
     const notify = (event) => {
         event.preventDefault();
         if(email.trim()===""){
             toast.error('Please enter your email');
+        }else if(!email.includes('@')){
+            toast.warning("Email must have @ in it");
         }else{
-            toast.success("Email sent successfully");
-            setEmail("");
-            setLoading(false)
-            // setLoading(true)
-            // emailjs.sendForm('service_p43m6qi', 'template_r7qrk2e', form.current, 'IOhB6Nxg-_2KrNZWL')
-            // the above template key and service key are not the ones to be used, they will be changed later
-            // .then((result) => {
-            //     toast.success("Email sent successfully");
-            //     setEmail("");
-            // }, (error) => {
-            // toast.error("failed, try again later");
-            //     setEmail("");
-            // })
-            // .finally(() => {
-            //     setLoading(false);
-            // });
+            setLoading(true)
+            emailjs.sendForm('service_59u3ipq', 'template_o5xxu1h', form.current, 'IOhB6Nxg-_2KrNZWL')
+            .then(() => {
+                toast.success("Email sent successfully");
+                setEmail("");
+            }) 
+            .catch(() => {
+                toast.error("failed, try again later");
+                setEmail("");
+            })
+            .finally(() => {
+                setLoading(false);
+            });
         }
     }
   return (
     <section id="coming" className="flex flex-col items-center justify-between px-20 py-10">
         <header className="flex items-center justify-between w-full text-blue-400">
             <div className="logo">
-                <h3 className="text-4xl  logo ">Quick Bite</h3>
+                <img src={whiteThree} alt="QuickBite logo" className="w-52" />
             </div>
             <div className="links">
                 <ul className="flex gap-1">
@@ -59,10 +63,10 @@ function Coming() {
             <p className="text-xl">It will be here soon, click &quot;Notify me&quot; button to be ready for the grand day!</p>
             <button onClick={onOpenModal} className="px-6 py-2 font-bold transition ease-in-out bg-blue-500 rounded-md hover:bg-blue-600 ">Notify me</button>
             <Modal open={open} onClose={onCloseModal} center>
-                <form ref={form} className="flex flex-col items-start gap-2 ">
+                <form ref={form}  className="flex flex-col items-start gap-2 ">
                     <p>Enter your email:</p>
-                    <input type="email" value={email} onChange={handleEmailChange} className="h-8 px-3 rounded outline-none w-96 max-sm:w-60"/>
-                    <button type="button" onClick={notify} disabled={loading} className="px-4 py-1 text-white transition ease-in-out bg-blue-900 rounded-md hover:bg-blue-950">{loading ? 'Loading...' : 'Confirm'}</button>
+                    <input type="email" name="from_name" value={email} onChange={handleEmailChange} className="h-8 px-3 rounded outline-none w-96 max-sm:w-60"/>
+                    <button type="submit" onClick={notify} disabled={loading} className="px-4 py-1 text-white transition ease-in-out bg-blue-900 rounded-md hover:bg-blue-950">{loading ? 'Loading...' : 'Confirm'}</button>
                 </form>
                 
             </Modal>
